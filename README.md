@@ -18,8 +18,8 @@ A powerful, platform-agnostic webhook handler that processes events from GitHub 
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd github-webhook
+git clone git@github.com:Joeri-Abbo/git-webhook-scanner.git 
+cd git-webhook-scanner
 
 # Install dependencies
 make install
