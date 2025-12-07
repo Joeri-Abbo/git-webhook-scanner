@@ -1,0 +1,8 @@
+flask
+uvicorn
+asgiref
+python-dotenv
+pyyaml
+requests
+PyGithub
+python-gitlab

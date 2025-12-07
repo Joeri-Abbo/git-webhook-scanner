@@ -1,0 +1,42 @@
+# platform can be: 'github', 'gitlab', or ['github', 'gitlab'] for both
+filters:
+  - name: "Shalut Mention in Title or Description"
+    platform: [github, gitlab]
+    events: [issues, issue, pull_request, merge_request, push]
+    any_of:
+      - repository_name:
+          contains: "shalut"
+      - repository_description:
+          contains: "shalut"
+      - issue_title:
+          contains: "shalut"
+      - pr_title:
+          contains: "shalut"
+      - issue_body:
+          contains: "shalut"
+      - pr_body:
+          contains: "shalut"
+      - commit_messages:
+          contains: "shalut"
+    notify: true
+    message: "🔔 'shalut' mentioned in {repository} by {sender}\n<{compare_url}|View Changes>"
+
+  - name: "Webhook Config File Changed"
+    platform: [github, gitlab]
+    events: [push]
+    conditions:
+      modified_files:
+        contains: ".github/workflows/test.yml"
+    notify: true
+    message: "📝 Webhook config changed: {repository} - .github/workflows/test.yml modified by {sender}\n<{compare_url}|View Changes>"
+
+  - name: "File Contains webhook.nl"
+    platform: [github, gitlab]
+    events: [push]
+    conditions:
+      modified_files:
+        contains: ".github/workflows/ci.yml"
+      file_content_contains:
+        contains: "webnl.nl"
+    notify: true
+    message: "🔍 File .github/workflows/ci.yml contains webnl.nl in {repository} by {sender}\n<{compare_url}|View Changes>"
