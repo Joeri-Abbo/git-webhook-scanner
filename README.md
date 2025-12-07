@@ -624,9 +624,6 @@ class YourChannelNotification(NotificationChannel):
 - [GitLab Webhooks Documentation](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html)
 - [Architecture Documentation](ARCHITECTURE.md) - Deep dive into system design
 
-## 📝 License
-
-[Your License Here]
 
 ## 💬 Support
 
