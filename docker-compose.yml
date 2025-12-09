@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  webhook-handler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: github-webhook-handler
+    ports:
+      - "8000:8000"
+    environment:
+      # GitHub Configuration
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+      - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
+      
+      # GitLab Configuration
+      - GITLAB_WEBHOOK_TOKEN=${GITLAB_WEBHOOK_TOKEN}
+      - GITLAB_API_TOKEN=${GITLAB_API_TOKEN}
+      
+      # Notification Configuration
+      - NOTIFICATION_CHANNEL=${NOTIFICATION_CHANNEL:-slack}
+      
+      # Slack Configuration
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      
+      # Email Configuration
+      - EMAIL_SMTP_HOST=${EMAIL_SMTP_HOST}
+      - EMAIL_SMTP_PORT=${EMAIL_SMTP_PORT:-587}
+      - EMAIL_SMTP_USER=${EMAIL_SMTP_USER}
+      - EMAIL_SMTP_PASSWORD=${EMAIL_SMTP_PASSWORD}
+      - EMAIL_FROM_ADDRESS=${EMAIL_FROM_ADDRESS}
+      - EMAIL_TO_ADDRESSES=${EMAIL_TO_ADDRESSES}
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - ./events:/app/events:rw
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s

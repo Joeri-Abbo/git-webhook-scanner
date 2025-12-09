@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.github/
+
+# Documentation
+*.md
+!README.md
+
+# Environment files (should be provided at runtime)
+.env
+.env.*
+
+# Development files
+Makefile
+dev-requirements.txt
+pyproject.toml
+.ruff.toml
+
+# Event examples (not needed in production)
+events/
+
+# Test files
+tests/
+pytest.ini
