@@ -63,6 +63,8 @@ filters:
 
 ### 3. Run the Application
 
+#### Option A: Local Development
+
 ```bash
 # Development
 python main.py
@@ -71,7 +73,20 @@ python main.py
 make run
 ```
 
-The application will start on `http://localhost:5000`.
+The application will start on `http://localhost:8000`.
+
+#### Option B: Docker (Recommended for Production)
+
+```bash
+# Using Docker Compose (easiest)
+docker-compose up -d
+
+# Or using pre-built image from GitHub Container Registry
+docker pull ghcr.io/joeri-abbo/git-webhook-scanner:latest
+docker run -d -p 8000:8000 --env-file .env -v $(pwd)/config.yaml:/app/config.yaml:ro ghcr.io/joeri-abbo/git-webhook-scanner:latest
+```
+
+📘 **See [DOCKER.md](DOCKER.md) for complete Docker deployment guide.**
 
 ### 4. Configure Webhooks
 
@@ -437,7 +452,9 @@ github-webhook/
 ├── main.py                 # Flask app entry point
 ├── config.yaml            # Filter configuration
 ├── .env                   # Secrets (gitignored)
-├── requirements.txt       # Python dependencies
+├── pyproject.toml         # Project config, dependencies, and tool settings
+├── requirements.txt       # Pinned production dependencies
+├── dev-requirements.txt   # Pinned dev dependencies
 ├── helpers/
 │   ├── normalizer.py      # Data normalization
 │   ├── filter_engine.py   # Filter evaluation
@@ -454,17 +471,23 @@ github-webhook/
 └── events/                # Logged webhook events (gitignored)
 ```
 
+📘 **See [DEVELOPMENT.md](DEVELOPMENT.md) for detailed development setup guide.**
+
 ### Running Tests
 
 ```bash
 # Install dev dependencies
-pip install -r dev-requirements.txt
+make dev-install
 
-# Run tests
-pytest
+# Run all tests
+make test
 
 # Run with coverage
-pytest --cov=helpers --cov-report=html
+make test-cov
+
+# Lint and format code
+make lint-fix
+make format
 ```
 
 ### Debugging
@@ -505,7 +528,7 @@ print(f"Match: {result}")
 ### Using Docker
 
 ```dockerfile
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 WORKDIR /app
 

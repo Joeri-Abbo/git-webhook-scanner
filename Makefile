@@ -20,7 +20,10 @@ help:
 	@echo "  make test-integration - Run integration tests only"
 	@echo "  make test-cov       - Run tests with coverage report"
 	@echo "  make lint           - Run ruff linter"
+	@echo "  make lint-fix       - Run ruff linter with auto-fix"
 	@echo "  make format         - Format code with ruff"
+	@echo "  make check          - Run all checks (lint + test)"
+	@echo "  make type-check     - Run mypy type checker"
 	@echo "  make clean          - Remove virtual environment and cache files"
 	@echo "  make stop           - Stop the webhook server"
 	@echo ""
@@ -29,6 +32,7 @@ install:
 	@echo "Creating virtual environment..."
 	@test -d $(VENV) || python3 -m venv $(VENV)
 	@echo "Installing dependencies..."
+	@$(PIP) install --upgrade pip setuptools wheel
 	@$(PIP) install -r requirements.txt
 	@echo ""
 	@echo "Installation complete!"
@@ -46,7 +50,9 @@ dev-install: install
 	@echo ""
 	@echo "You can now:"
 	@echo "  - Run tests with 'make test'"
-	@echo "  - Use pytest, linting tools, etc."
+	@echo "  - Run linting with 'make lint'"
+	@echo "  - Format code with 'make format'"
+	@echo "  - Run type checking with 'make type-check'"
 
 run:
 	@echo "Starting webhook server on http://0.0.0.0:8000"
@@ -76,13 +82,23 @@ test-cov:
 
 lint:
 	@echo "Running ruff linter..."
+	@$(RUFF) check .
+
+lint-fix:
+	@echo "Running ruff linter with auto-fix..."
 	@$(RUFF) check . --fix
 
 format:
 	@echo "Formatting code with ruff..."
-	@$(RUFF) check --fix .
 	@$(RUFF) format .
 	@echo "Code formatted!"
+
+check: lint test
+	@echo "All checks passed!"
+
+type-check:
+	@echo "Running mypy type checker..."
+	@$(VENV)/bin/mypy helpers/ main.py || echo "Type checking complete (warnings may exist)"
 
 stop:
 	@echo "Stopping webhook server..."

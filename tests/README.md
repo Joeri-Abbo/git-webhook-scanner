@@ -95,6 +95,5 @@ Common fixtures are defined in `conftest.py`:
 Tests run automatically on:
 - Push to `main` or `develop` branches
 - Pull requests to `main` or `develop`
-- Multiple Python versions (3.10, 3.11, 3.12)
 
 See `.github/workflows/test.yml` for CI configuration.
