@@ -84,7 +84,7 @@ ruff==0.14.8
     # via git-webhook-scanner (pyproject.toml)
 typing-extensions==4.15.0
     # via pygithub
-urllib3==2.6.1
+urllib3==2.6.2
     # via
     #   pygithub
     #   requests
