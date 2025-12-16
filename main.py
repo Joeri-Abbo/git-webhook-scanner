@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+
 import yaml
 from flask import Flask
 from asgiref.wsgi import WsgiToAsgi
@@ -24,9 +26,25 @@ print(
     f"File content fetcher initialized (GitHub: {github_status}, GitLab: {gitlab_status})"
 )
 
-# Load configuration from YAML
-with open("config.yaml", "r") as f:
-    config = yaml.safe_load(f)
+# Load configuration from YAML with fallback to example
+primary_config_path = Path(os.getenv("CONFIG_PATH", "config.yaml"))
+fallback_config_path = Path("config.example.yaml")
+config = None
+
+for candidate in [primary_config_path, fallback_config_path]:
+    if candidate.exists():
+        with candidate.open("r") as f:
+            config = yaml.safe_load(f) or {}
+        if candidate == fallback_config_path and candidate != primary_config_path:
+            print(
+                f"Using fallback configuration from {fallback_config_path}; create {primary_config_path} to override."
+            )
+        break
+
+if config is None:
+    raise FileNotFoundError(
+        f"No configuration file found. Looked for {primary_config_path} and {fallback_config_path}."
+    )
 
 # Set up notification channel from environment variables
 channel_type = os.getenv("NOTIFICATION_CHANNEL", "slack")
