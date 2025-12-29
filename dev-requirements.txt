@@ -20,7 +20,7 @@ click==8.3.1
     # via
     #   flask
     #   uvicorn
-coverage==7.13.0
+coverage==7.13.1
     # via pytest-cov
 cryptography==46.0.3
     # via pyjwt
