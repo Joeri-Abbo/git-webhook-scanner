@@ -37,7 +37,7 @@ markupsafe==3.0.3
     #   flask
     #   jinja2
     #   werkzeug
-pycparser==2.23
+pycparser==3.0
     # via cffi
 pygithub==2.8.1
     # via git-webhook-scanner (pyproject.toml)
