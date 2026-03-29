@@ -72,7 +72,7 @@ python-gitlab==7.1.0
     # via git-webhook-scanner (pyproject.toml)
 pyyaml==6.0.3
     # via git-webhook-scanner (pyproject.toml)
-requests==2.32.5
+requests==2.33.0
     # via
     #   git-webhook-scanner (pyproject.toml)
     #   pygithub
