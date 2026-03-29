@@ -47,7 +47,7 @@ pynacl==1.6.2
     # via pygithub
 python-dotenv==1.2.1
     # via git-webhook-scanner (pyproject.toml)
-python-gitlab==7.1.0
+python-gitlab==8.0.0
     # via git-webhook-scanner (pyproject.toml)
 pyyaml==6.0.3
     # via git-webhook-scanner (pyproject.toml)
