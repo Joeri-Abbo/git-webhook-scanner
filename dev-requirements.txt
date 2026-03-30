@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra=dev --output-file=dev-requirements.txt --strip-extras pyproject.toml
 #
-asgiref==3.11.0
+asgiref==3.11.1
     # via git-webhook-scanner (pyproject.toml)
 blinker==1.9.0
     # via flask
@@ -66,7 +66,7 @@ pytest-cov==7.0.0
     # via git-webhook-scanner (pyproject.toml)
 pytest-mock==3.15.1
     # via git-webhook-scanner (pyproject.toml)
-python-dotenv==1.2.1
+python-dotenv==1.2.2
     # via git-webhook-scanner (pyproject.toml)
 python-gitlab==8.0.0
     # via git-webhook-scanner (pyproject.toml)
