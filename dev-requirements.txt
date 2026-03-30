@@ -90,5 +90,5 @@ urllib3==2.6.3
     #   requests
 uvicorn==0.40.0
     # via git-webhook-scanner (pyproject.toml)
-werkzeug==3.1.6
+werkzeug==3.1.7
     # via flask
