@@ -87,13 +87,13 @@ class FilterEngine:
         elif condition_type == "greater_than":
             try:
                 return float(value) > float(condition_value)
-            except (ValueError, TypeError):
+            except ValueError, TypeError:
                 return False
 
         elif condition_type == "less_than":
             try:
                 return float(value) < float(condition_value)
-            except (ValueError, TypeError):
+            except ValueError, TypeError:
                 return False
 
         elif condition_type == "starts_with":
