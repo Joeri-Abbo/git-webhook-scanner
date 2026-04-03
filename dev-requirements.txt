@@ -80,7 +80,7 @@ requests==2.33.1
     #   requests-toolbelt
 requests-toolbelt==1.0.0
     # via python-gitlab
-ruff==0.15.8
+ruff==0.15.9
     # via git-webhook-scanner (pyproject.toml)
 typing-extensions==4.15.0
     # via pygithub
