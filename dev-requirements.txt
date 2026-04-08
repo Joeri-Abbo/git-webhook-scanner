@@ -57,7 +57,7 @@ pyjwt==2.12.1
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-pytest==9.0.2
+pytest==9.0.3
     # via
     #   git-webhook-scanner (pyproject.toml)
     #   pytest-cov
@@ -80,7 +80,7 @@ requests==2.33.1
     #   requests-toolbelt
 requests-toolbelt==1.0.0
     # via python-gitlab
-ruff==0.15.8
+ruff==0.15.9
     # via git-webhook-scanner (pyproject.toml)
 typing-extensions==4.15.0
     # via pygithub
