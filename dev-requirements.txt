@@ -57,7 +57,7 @@ pyjwt==2.12.1
     # via pygithub
 pynacl==1.6.2
     # via pygithub
-pytest==9.0.2
+pytest==9.0.3
     # via
     #   git-webhook-scanner (pyproject.toml)
     #   pytest-cov
