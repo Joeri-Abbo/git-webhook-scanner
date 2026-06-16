@@ -53,7 +53,7 @@ pygithub==2.8.1
     # via git-webhook-scanner (pyproject.toml)
 pygments==2.20.0
     # via pytest
-pyjwt==2.12.1
+pyjwt==2.13.0
     # via pygithub
 pynacl==1.6.2
     # via pygithub
